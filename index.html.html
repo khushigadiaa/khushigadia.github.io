@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khushi Gadia — Social Media & Brand Strategist</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0A0A0A;
+  --white: #FFFFFF;
+  --coral: #FF4D4D;
+  --coral-dim: rgba(255,77,77,0.12);
+  --gray: #777;
+  --mid: #1A1A1A;
+  --card: #111;
+  --border: rgba(255,255,255,0.08);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CUSTOM CURSOR */
+.cursor {
+  position: fixed; top:0; left:0; z-index:9999; pointer-events:none;
+  width:12px; height:12px; border-radius:50%; background:var(--coral);
+  transform: translate(-50%,-50%);
+  transition: transform 0.1s, width 0.3s, height 0.3s, opacity 0.3s;
+  mix-blend-mode: difference;
+}
+.cursor-ring {
+  position:fixed; top:0; left:0; z-index:9998; pointer-events:none;
+  width:40px; height:40px; border-radius:50%;
+  border:1px solid rgba(255,77,77,0.5);
+  transform: translate(-50%,-50%);
+  transition: transform 0.15s ease, width 0.3s, height 0.3s;
+}
+.cursor.hover { width:6px; height:6px; }
+.cursor-ring.hover { width:60px; height:60px; border-color:var(--coral); }
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:20px 52px;
+  background:rgba(10,10,10,0.9); backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo {
+  font-family:'Playfair Display',serif; font-size:22px; font-weight:900;
+  letter-spacing:-0.02em;
+}
+.nav-logo span { color:var(--coral); }
+.nav-links { display:flex; gap:36px; align-items:center; }
+.nav-links a {
+  font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--gray); text-decoration:none; transition:color 0.2s;
+}
+.nav-links a:hover { color:var(--white); }
+.nav-hire {
+  background:var(--coral) !important; color:white !important;
+  padding:9px 22px !important; letter-spacing:0.1em !important;
+  transition:background 0.2s !important;
+}
+.nav-hire:hover { background:#e03333 !important; }
+
+/* PROGRESS BAR */
+.progress { position:fixed; top:0; left:0; height:2px; background:var(--coral); z-index:200; width:0%; transition:width 0.1s; }
+
+/* HERO */
+.hero {
+  min-height:100vh; padding:130px 52px 80px;
+  display:flex; flex-direction:column; justify-content:center;
+  position:relative; overflow:hidden;
+}
+.hero-noise {
+  position:absolute; inset:0; pointer-events:none; opacity:0.03;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+.hero-eyebrow {
+  display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;
+  animation: fadeIn 0.8s ease 0.2s both;
+}
+.hero-badge {
+  font-size:10px; letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--coral); border:1px solid var(--coral); padding:7px 16px;
+}
+.hero-avail {
+  font-size:11px; color:var(--gray); letter-spacing:0.1em;
+  display:flex; align-items:center; gap:8px;
+}
+.dot-green {
+  width:8px; height:8px; border-radius:50%; background:#22c55e;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+.hero-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(52px,8.5vw,108px);
+  font-weight:900; line-height:0.93; letter-spacing:-0.03em;
+  animation: fadeUp 0.9s ease 0.3s both;
+}
+.hero-title em { font-style:italic; color:var(--coral); }
+.hero-title .indent { padding-left:clamp(60px,10vw,160px); }
+
+.hero-bottom {
+  display:flex; justify-content:space-between; align-items:flex-end;
+  margin-top:52px;
+  animation: fadeUp 0.9s ease 0.5s both;
+}
+.hero-bio {
+  max-width:480px; font-size:15px; line-height:1.85; color:var(--gray); font-weight:300;
+}
+.hero-bio strong { color:var(--white); font-weight:600; }
+
+.hero-stats { display:flex; gap:0; }
+.hstat {
+  padding:24px 36px; border-left:1px solid var(--border); text-align:right;
+}
+.hstat:last-child { border-right:1px solid var(--border); }
+.hstat-num {
+  font-family:'Playfair Display',serif; font-size:48px; font-weight:700;
+  color:var(--white); line-height:1;
+}
+.hstat-num span { color:var(--coral); }
+.hstat-label { font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gray); margin-top:6px; }
+
+.scroll-hint {
+  margin-top:72px; display:flex; align-items:center; gap:14px;
+  font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gray);
+  animation:fadeIn 1.2s ease 1s both;
+}
+.scroll-line { width:48px; height:1px; background:var(--gray); }
+
+/* MARQUEE */
+.marquee-wrap {
+  overflow:hidden; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  padding:14px 0; background:var(--mid);
+}
+.marquee-inner { display:flex; animation:marquee 24s linear infinite; white-space:nowrap; }
+.marquee-item {
+  font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--gray); padding:0 28px; display:inline-flex; align-items:center; gap:28px;
+}
+.marquee-item::after { content:'✦'; color:var(--coral); font-size:9px; }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* SECTIONS */
+section { padding:110px 52px; }
+.eyebrow { font-size:10px; letter-spacing:0.25em; text-transform:uppercase; color:var(--coral); margin-bottom:14px; }
+.section-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(38px,5.5vw,68px); font-weight:700; line-height:1.05; letter-spacing:-0.02em;
+}
+.section-title em { font-style:italic; color:var(--coral); }
+
+/* ABOUT */
+.about { border-top:1px solid var(--border); }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; margin-top:60px; align-items:start; }
+.about-bio p { font-size:15px; line-height:1.9; color:var(--gray); margin-bottom:18px; font-weight:300; }
+.about-bio p strong { color:var(--white); font-weight:600; }
+.about-bio p em { color:var(--coral); font-style:normal; font-weight:600; }
+.about-note {
+  margin-top:24px; font-size:13px; color:var(--gray); font-style:italic; line-height:1.7;
+  border-left:2px solid var(--coral); padding-left:16px;
+}
+.skills-list { display:flex; flex-direction:column; gap:2px; }
+.skill-row {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:18px 22px; background:var(--card); border:1px solid var(--border);
+  transition:border-color 0.2s, background 0.2s;
+}
+.skill-row:hover { border-color:var(--coral); background:rgba(255,77,77,0.04); }
+.skill-name { font-size:13px; font-weight:600; }
+.skill-detail { font-size:11px; color:var(--gray); text-align:right; }
+
+/* BRAND SECTIONS */
+.brands { border-top:1px solid var(--border); padding-top:0; }
+.brands-header { padding:80px 52px 0; }
+.brand-section { border-top:1px solid var(--border); }
+
+.brand-layout {
+  display:grid; grid-template-columns:1fr 1fr; min-height:600px;
+}
+.brand-layout.flip { direction:rtl; }
+.brand-layout.flip > * { direction:ltr; }
+
+.brand-media { position:relative; overflow:hidden; background:#0d0d0d; }
+.brand-img {
+  width:100%; height:100%; object-fit:cover;
+  transition:transform 0.8s ease;
+  display:block; min-height:500px;
+}
+.brand-layout:hover .brand-img { transform:scale(1.04); }
+
+/* Reels grid inside brand */
+.reels-grid {
+  display:grid; grid-template-columns:1fr 1fr; height:100%; gap:2px;
+}
+.reel-thumb {
+  position:relative; overflow:hidden; cursor:pointer; background:#111;
+}
+.reel-thumb img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s; }
+.reel-thumb:hover img { transform:scale(1.06); }
+.reel-play {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  background:rgba(0,0,0,0.4); opacity:0; transition:opacity 0.3s;
+}
+.reel-thumb:hover .reel-play { opacity:1; }
+.reel-play-btn {
+  width:52px; height:52px; border-radius:50%; background:var(--coral);
+  display:flex; align-items:center; justify-content:center;
+}
+.reel-play-btn svg { width:20px; height:20px; fill:white; margin-left:3px; }
+
+.brand-info {
+  padding:52px 48px; background:var(--card);
+  display:flex; flex-direction:column; justify-content:center;
+  border:1px solid var(--border);
+}
+.brand-tag { font-size:9px; letter-spacing:0.22em; text-transform:uppercase; color:var(--coral); margin-bottom:14px; }
+.brand-name {
+  font-family:'Playfair Display',serif; font-size:clamp(44px,5vw,64px);
+  font-weight:900; line-height:0.95; margin-bottom:20px; letter-spacing:-0.02em;
+}
+.brand-desc { font-size:13px; line-height:1.85; color:var(--gray); margin-bottom:28px; font-weight:300; }
+.brand-desc strong { color:var(--white); }
+.metrics-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:24px; }
+.metric {
+  padding:14px 16px; background:rgba(255,255,255,0.03);
+  border:1px solid var(--border); transition:border-color 0.2s;
+}
+.metric:hover { border-color:var(--coral); }
+.metric-val {
+  font-family:'Playfair Display',serif; font-size:28px; font-weight:700;
+  color:var(--white); line-height:1;
+}
+.metric-val em { color:var(--coral); font-style:normal; }
+.metric-key { font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--coral); margin-top:4px; }
+.brand-role { font-size:11px; color:var(--gray); line-height:1.7; padding-top:18px; border-top:1px solid var(--border); }
+.brand-role strong { color:var(--white); }
+
+/* AI BADGE */
+.ai-badge {
+  display:inline-block; background:var(--coral); color:white;
+  font-size:9px; letter-spacing:0.15em; text-transform:uppercase;
+  font-weight:700; padding:5px 12px; margin-bottom:12px;
+}
+
+/* REEL MODAL */
+.modal-overlay {
+  position:fixed; inset:0; z-index:500; background:rgba(0,0,0,0.92);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none; transition:opacity 0.3s;
+}
+.modal-overlay.active { opacity:1; pointer-events:all; }
+.modal-inner { position:relative; width:400px; max-width:92vw; }
+.modal-close {
+  position:absolute; top:-44px; right:0;
+  font-size:13px; letter-spacing:0.1em; color:var(--gray); cursor:pointer;
+  background:none; border:none; color:var(--white); text-transform:uppercase;
+}
+.modal-close:hover { color:var(--coral); }
+.modal-frame { width:100%; aspect-ratio:9/16; border:none; }
+
+/* HANNAH MONTANA */
+.hannah {
+  border-top:1px solid var(--border);
+  background:var(--white); color:var(--black);
+  padding:110px 52px;
+}
+.hannah .eyebrow { color:var(--coral); }
+.hannah .section-title { color:var(--black); }
+.hannah-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; margin-top:60px; align-items:center; }
+.hannah-text p { font-size:16px; line-height:1.85; color:#444; margin-bottom:18px; }
+.hannah-text p strong { color:var(--black); }
+.hannah-reel {
+  display:flex; justify-content:center;
+}
+.hannah-reel-wrap {
+  width:320px; max-width:100%;
+  border-radius:0; overflow:hidden; border:1px solid #eee;
+  box-shadow:0 32px 80px rgba(0,0,0,0.15);
+}
+.hannah-reel-wrap iframe { width:100%; aspect-ratio:9/16; border:none; display:block; }
+
+/* HOW I WORK */
+.how-i-work { border-top:1px solid var(--border); }
+.work-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:60px; }
+.work-card {
+  background:var(--card); padding:36px 30px; border:1px solid var(--border);
+  transition:border-color 0.2s, background 0.2s;
+}
+.work-card:hover { border-color:var(--coral); background:rgba(255,77,77,0.03); }
+.work-card-tag { font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:var(--coral); margin-bottom:12px; }
+.work-card-title { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; margin-bottom:14px; }
+.work-card-desc { font-size:12px; color:var(--gray); line-height:1.75; }
+
+/* CONTACT */
+.contact { border-top:1px solid var(--border); }
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; margin-top:60px; align-items:start; }
+.contact-headline {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(42px,5vw,64px); font-weight:700; line-height:1.05;
+  letter-spacing:-0.02em; margin-bottom:28px;
+}
+.contact-headline em { font-style:italic; color:var(--coral); }
+.contact-subtext { font-size:14px; color:var(--gray); line-height:1.8; border-left:3px solid var(--coral); padding-left:18px; }
+.contact-items { display:flex; flex-direction:column; }
+.contact-item {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:20px 0; border-bottom:1px solid var(--border);
+}
+.contact-item:first-child { border-top:1px solid var(--border); }
+.contact-key { font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gray); }
+.contact-val { font-size:14px; color:var(--white); }
+.contact-val.dim { color:var(--gray); font-style:italic; font-size:12px; }
+
+/* FOOTER */
+footer {
+  padding:28px 52px; border-top:1px solid var(--border);
+  display:flex; justify-content:space-between; align-items:center;
+}
+.footer-logo { font-family:'Playfair Display',serif; font-size:18px; font-weight:900; }
+.footer-logo span { color:var(--coral); }
+.footer-copy { font-size:11px; color:var(--gray); }
+
+/* REVEAL ANIMATIONS */
+@keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+.reveal { opacity:0; transform:translateY(32px); transition:opacity 0.75s ease, transform 0.75s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* STAGGER */
+.stagger > *:nth-child(1) { transition-delay:0s; }
+.stagger > *:nth-child(2) { transition-delay:0.08s; }
+.stagger > *:nth-child(3) { transition-delay:0.16s; }
+.stagger > *:nth-child(4) { transition-delay:0.24s; }
+.stagger > *:nth-child(5) { transition-delay:0.32s; }
+.stagger > *:nth-child(6) { transition-delay:0.40s; }
+
+/* RESPONSIVE */
+@media(max-width:900px) {
+  nav{padding:16px 24px;}
+  .nav-links{display:none;}
+  section, .brands-header{padding:70px 24px;}
+  .hero{padding:110px 24px 60px;}
+  .hero-bottom{flex-direction:column;gap:40px;}
+  .hero-stats{display:grid;grid-template-columns:1fr 1fr;}
+  .hstat{text-align:left;}
+  .about-grid,.hannah-grid,.contact-grid{grid-template-columns:1fr;gap:40px;}
+  .brand-layout,.brand-layout.flip{grid-template-columns:1fr;direction:ltr;}
+  .brand-layout.flip>*{direction:ltr;}
+  .reels-grid{grid-template-columns:1fr 1fr;min-height:280px;}
+  .work-cards{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:10px;text-align:center;padding:24px;}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="progress" id="progress"></div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-inner">
+    <button class="modal-close" id="modalClose">✕ Close</button>
+    <iframe class="modal-frame" id="modalFrame" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-logo">Khushi<span>.</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#how">How I Work</a>
+    <a href="#contact" class="nav-hire">Hire Me</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-noise"></div>
+  <div class="hero-eyebrow">
+    <div class="hero-badge">Social Media · Brand Strategy · AI Content</div>
+    <div class="hero-avail"><div class="dot-green"></div> Available for remote work</div>
+  </div>
+  <h1 class="hero-title">
+    I help brands become<br>
+    <span class="indent">something people like</span><br>
+    <em>me</em> would want on their feed.
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-bio">
+      2 years. 5+ brands. <strong>120+ posts a month.</strong><br>
+      Social Media Executive & Brand Strategist using AI to build content that looks like it cost way more than it did.
+    </p>
+    <div class="hero-stats">
+      <div class="hstat">
+        <div class="hstat-num">99<span>M+</span></div>
+        <div class="hstat-label">Views, Menswear</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">5<span>+</span></div>
+        <div class="hstat-label">Brands at once</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">120<span>+</span></div>
+        <div class="hstat-label">Posts per month</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">30<span>K</span></div>
+        <div class="hstat-label">Followers in 3 months</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>Scroll to see the work</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span class="marquee-item">Carter's India</span>
+    <span class="marquee-item">Crocodile</span>
+    <span class="marquee-item">Verosmart</span>
+    <span class="marquee-item">Forum Rex Walk</span>
+    <span class="marquee-item">Bemberg</span>
+    <span class="marquee-item">99M Views</span>
+    <span class="marquee-item">AI-Powered</span>
+    <span class="marquee-item">Brand Strategy</span>
+    <span class="marquee-item">Carter's India</span>
+    <span class="marquee-item">Crocodile</span>
+    <span class="marquee-item">Verosmart</span>
+    <span class="marquee-item">Forum Rex Walk</span>
+    <span class="marquee-item">Bemberg</span>
+    <span class="marquee-item">99M Views</span>
+    <span class="marquee-item">AI-Powered</span>
+    <span class="marquee-item">Brand Strategy</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="eyebrow reveal">Who I Am</div>
+  <h2 class="section-title reveal">I improve vibes<br><em>for a living.</em></h2>
+  <div class="about-grid">
+    <div class="about-bio reveal">
+      <p>I've managed <strong>5+ simultaneous brand accounts</strong> — B2B, Menswear, Babywear, F&B, Lifestyle and much more — producing 120+ posts a month without losing my mind or the brand voice.</p>
+      <p>A big part of how I do this is <em>AI</em>. Tools like Higgsfield and Nana meant I could direct the designers to produce shoot-quality content without booking a studio every week. Verosmart's entire visual identity? 100% AI-directed. You wouldn't know it.</p>
+      <p>I've also done the real thing — hired vendors, stood on set, directed photographers, and told editors exactly which frame makes the Bemberg fabric look like a dream. <strong>Both skillsets. One person. Hi.</strong></p>
+      <div class="about-note">On the next couple of sections, you'll see samples of work I'm proud of :)</div>
+    </div>
+    <div class="skills-list reveal stagger">
+      <div class="skill-row"><div class="skill-name">Multi-Brand Management</div><div class="skill-detail">5+ brands at once, zero identity blur</div></div>
+      <div class="skill-row"><div class="skill-name">AI Content Production</div><div class="skill-detail">Higgsfield · Nana · ChatGPT · Claude</div></div>
+      <div class="skill-row"><div class="skill-name">Art Direction</div><div class="skill-detail">Concept → Shoot → Post-production</div></div>
+      <div class="skill-row"><div class="skill-name">Paid Social</div><div class="skill-detail">Meta Ads · LinkedIn Boosting</div></div>
+      <div class="skill-row"><div class="skill-name">Brand Storytelling</div><div class="skill-detail">Voice, Copywriting, Grid, Campaign</div></div>
+      <div class="skill-row"><div class="skill-name">Analytics & Reporting</div><div class="skill-detail">Google Analytics · Meta Business Suite</div></div>
+      <div class="skill-row"><div class="skill-name">Influencer Marketing</div><div class="skill-detail">Shortlist · Outreach · Approvals · Tracking</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<div class="brands" id="work">
+  <div class="brands-header reveal">
+    <div class="eyebrow">The Work</div>
+    <h2 class="section-title">5 brands.<br><em>All different.</em></h2>
+  </div>
+
+  <!-- BEMBERG -->
+  <div class="brand-section">
+    <div class="brand-layout">
+      <div class="brand-media">
+        <div class="reels-grid">
+          <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DPd8SySD3bz/embed/')">
+            <img src="IMG_5840.png" alt="Bemberg Festive" style="object-position:center top">
+            <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+          </div>
+          <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DPWOB0aE5lc/embed/')">
+            <img src="IMG_5840.png" alt="Bemberg" style="object-position:30% 60%">
+            <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+          </div>
+          <div class="reel-thumb" style="cursor:default">
+            <img src="IMG_5840.png" alt="Bemberg" style="object-position:60% 30%">
+          </div>
+          <div class="reel-thumb" style="cursor:default">
+            <img src="IMG_5840.png" alt="Bemberg" style="object-position:80% 80%">
+          </div>
+        </div>
+      </div>
+      <div class="brand-info reveal">
+        <div class="brand-tag">Fashion · Festive Campaign · Full Production</div>
+        <div class="brand-name">Bemberg</div>
+        <div class="brand-desc">Full ownership of Festive '25. From the photographer to HMU, to reaching out to designers like <strong>Paulmi & Harsh and Anita Dongre</strong> — I hired every vendor, stood on set for every shot, and guided editors through post-production.</div>
+        <div class="metrics-grid stagger">
+          <div class="metric"><div class="metric-val">8<em>M</em></div><div class="metric-key">Reach +493%</div></div>
+          <div class="metric"><div class="metric-val">98<em>K</em></div><div class="metric-key">Profile visits +695%</div></div>
+          <div class="metric"><div class="metric-val">89<em>K</em></div><div class="metric-key">Link clicks</div></div>
+          <div class="metric"><div class="metric-val">2.4<em>K</em></div><div class="metric-key">New followers</div></div>
+        </div>
+        <div class="brand-role"><strong>My role:</strong> Art direction · Vendor management · On-set direction · Grid curation · Post-production</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARTER'S -->
+  <div class="brand-section">
+    <div class="brand-layout flip">
+      <div class="brand-media">
+        <div class="reels-grid">
+          <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DVm8KDoE4rd/embed/')">
+            <img src="IMG_5844.png" alt="Carter's India" style="object-position:center top">
+            <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+          </div>
+          <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DUk9WU3DAbA/embed/')">
+            <img src="IMG_5844.png" alt="Carter's" style="object-position:80% 20%">
+            <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+          </div>
+          <div class="reel-thumb" style="cursor:default">
+            <img src="IMG_5844.png" alt="Carter's" style="object-position:20% 60%">
+          </div>
+          <div class="reel-thumb" style="cursor:default">
+            <img src="IMG_5844.png" alt="Carter's" style="object-position:60% 40%">
+          </div>
+        </div>
+      </div>
+      <div class="brand-info reveal">
+        <div class="brand-tag">Baby & Kids · India Market Launch</div>
+        <div class="brand-name">Carter's</div>
+        <div class="brand-desc">America's #1 babywear brand needed an India voice. We gave them one. <strong>#BornForThis</strong> became the campaign — warm, specific enough to make Indian parents feel seen. 0 to 30K followers in 3 months. Not bad for a baby, right?</div>
+        <div class="metrics-grid stagger">
+          <div class="metric"><div class="metric-val">9<em>M</em></div><div class="metric-key">Views +261%</div></div>
+          <div class="metric"><div class="metric-val">30<em>K</em></div><div class="metric-key">Followers in 3 months</div></div>
+          <div class="metric"><div class="metric-val">6<em>M</em></div><div class="metric-key">Reach +230%</div></div>
+          <div class="metric"><div class="metric-val">69<em>K</em></div><div class="metric-key">Interactions +314%</div></div>
+        </div>
+        <div class="brand-role"><strong>My role:</strong> Brand launch strategy · Content calendar · Campaign ideation · Paid social · #BornForThis</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VEROSMART -->
+  <div class="brand-section">
+    <div class="brand-layout">
+      <div class="brand-media">
+        <div class="reels-grid">
+          <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DWjIUMtEnn9/embed/')">
+            <img src="IMG_5843.png" alt="Verosmart" style="object-position:center top">
+            <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+          </div>
+          <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DVJVpL-kk78/embed/')">
+            <img src="IMG_5843.png" alt="Verosmart" style="object-position:40% 30%">
+            <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+          </div>
+          <div class="reel-thumb" style="cursor:default">
+            <img src="IMG_5843.png" alt="Verosmart" style="object-position:60% 70%">
+          </div>
+          <div class="reel-thumb" style="cursor:default">
+            <img src="IMG_5843.png" alt="Verosmart" style="object-position:20% 50%">
+          </div>
+        </div>
+      </div>
+      <div class="brand-info reveal">
+        <div class="ai-badge">100% AI Content</div>
+        <div class="brand-tag">Menswear · AI-First Brand Build</div>
+        <div class="brand-name">Verosmart</div>
+        <div class="brand-desc">Every image on this feed? AI-directed. No studio. No model booking. No location scouting. Just a clear vision — <strong>"Intelligent apparel for modern India"</strong> — and designers briefed to bring it to life. It looks like luxury. It cost peanuts.</div>
+        <div class="metrics-grid stagger">
+          <div class="metric"><div class="metric-val">2.8<em>M</em></div><div class="metric-key">Views +597%</div></div>
+          <div class="metric"><div class="metric-val">+844<em>%</em></div><div class="metric-key">Follower growth</div></div>
+          <div class="metric"><div class="metric-val">2.3<em>M</em></div><div class="metric-key">Reach +1,000%</div></div>
+          <div class="metric"><div class="metric-val">21<em>K</em></div><div class="metric-key">Link clicks +426%</div></div>
+        </div>
+        <div class="brand-role"><strong>My role:</strong> Brand identity · Creative direction · AI workflow briefing · Copywriting · Grid strategy</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CROCODILE -->
+  <div class="brand-section">
+    <div class="brand-layout flip">
+      <div class="brand-media">
+        <div class="reels-grid">
+          <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DWWQbSyEg4M/embed/')">
+            <img src="IMG_5842.png" alt="Crocodile" style="object-position:center top">
+            <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+          </div>
+          <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DU8Ib3CGE6q/embed/')">
+            <img src="IMG_5842.png" alt="Crocodile" style="object-position:30% 50%">
+            <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+          </div>
+          <div class="reel-thumb" style="cursor:default">
+            <img src="IMG_5842.png" alt="Crocodile" style="object-position:70% 20%">
+          </div>
+          <div class="reel-thumb" style="cursor:default">
+            <img src="IMG_5842.png" alt="Crocodile" style="object-position:50% 80%">
+          </div>
+        </div>
+      </div>
+      <div class="brand-info reveal">
+        <div class="brand-tag">Fashion · Brand Identity from Scratch</div>
+        <div class="brand-name">Crocodile</div>
+        <div class="brand-desc">Crocodile had content. It just didn't have a point of view. When I came in, menswear on Instagram was a sea of sameness — everyone doing the same clean white backgrounds, the same generic lifestyle shots. So we went the other way. We made <strong>Crocodile the hero</strong> — not the clothes. The name, the legacy, the attitude. Editorial shifts, stronger typography, a visual language that felt like it had something to say. And then we took it further — moved away from shoots entirely and directed designers to build an AI content pipeline that honestly looks better than what we were producing on set. Less budget. More brand.</div>
+        <div class="metrics-grid stagger">
+          <div class="metric"><div class="metric-val">99<em>M</em></div><div class="metric-key">Views total</div></div>
+          <div class="metric"><div class="metric-val">36<em>M</em></div><div class="metric-key">Reach</div></div>
+          <div class="metric"><div class="metric-val">148<em>K</em></div><div class="metric-key">Interactions</div></div>
+          <div class="metric"><div class="metric-val">73</div><div class="metric-key">Posts published</div></div>
+        </div>
+        <div class="brand-role"><strong>My role:</strong> Brand strategy · Creative direction · AI workflow briefing · Copywriting · Multi-category campaigns · Grid direction</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORUM REX WALK -->
+  <div class="brand-section">
+    <div class="brand-layout">
+      <div class="brand-media">
+        <div class="reels-grid">
+          <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DWEOxg1Chfw/embed/')">
+            <img src="IMG_5841.png" alt="Forum Rex Walk" style="object-position:center top">
+            <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+          </div>
+          <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DUBBHN0DkZW/embed/')">
+            <img src="IMG_5841.png" alt="Rex Walk" style="object-position:30% 40%">
+            <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+          </div>
+          <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DSbyycwTwfT/embed/')">
+            <img src="IMG_5841.png" alt="Rex Walk" style="object-position:70% 60%">
+            <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
+          </div>
+          <div class="reel-thumb" style="cursor:default">
+            <img src="IMG_5841.png" alt="Rex Walk" style="object-position:50% 20%">
+          </div>
+        </div>
+      </div>
+      <div class="brand-info reveal">
+        <div class="brand-tag">F&B · Holiday Campaign · 13 Restaurants</div>
+        <div class="brand-name">Forum Rex Walk</div>
+        <div class="brand-desc">This one was boots on the ground. Literally. I took a videographer and photographer into every single restaurant in Forum Rex Walk — every dish, every corner, every candle, every ceiling. Because you can't sell a dining experience from a stock image. We covered the ambiance, the food, the details people notice when they're actually there. Then I ideated individually for each restaurant — because <strong>Amadora's story isn't Burma Burma's story.</strong> Same campaign world, 13 different reasons to show up.</div>
+        <div class="metrics-grid stagger">
+          <div class="metric"><div class="metric-val">5.1<em>M</em></div><div class="metric-key">Views</div></div>
+          <div class="metric"><div class="metric-val">10<em>K</em></div><div class="metric-key">Followers +31%</div></div>
+          <div class="metric"><div class="metric-val">3.9<em>M</em></div><div class="metric-key">Reach</div></div>
+          <div class="metric"><div class="metric-val">36<em>K</em></div><div class="metric-key">Link clicks +60%</div></div>
+        </div>
+        <div class="brand-role"><strong>My role:</strong> Campaign ideation · Creative direction · Vendor management · On-set direction · 13-restaurant storytelling · Long-term brand assets</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HANNAH MONTANA -->
+<section class="hannah">
+  <div class="eyebrow reveal">Bonus Round</div>
+  <h2 class="section-title reveal" style="color:var(--black);">I pull a little Hannah Montana sometimes.<br><em style="color:var(--coral)">Directing the scene and starring in it too.</em></h2>
+  <div class="hannah-grid">
+    <div class="hannah-text reveal">
+      <p>I pull a little Hannah Montana sometimes.</p>
+      <p><strong>Directing the scene and starring in it too.</strong></p>
+    </div>
+    <div class="hannah-reel reveal">
+      <div class="hannah-reel-wrap">
+        <iframe src="https://www.instagram.com/p/DUpwl-Uie-a/embed/" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW I WORK -->
+<section class="how-i-work" id="how">
+  <div class="eyebrow reveal">How I Work</div>
+  <h2 class="section-title reveal">I wear many hats as a social media exec…<br><em>luckily, styling them is (also) part of the job.</em></h2>
+  <p style="color:var(--gray);margin-top:16px;font-size:14px;" class="reveal">My other not-so-important roles are:</p>
+  <div class="work-cards stagger">
+    <div class="work-card reveal">
+      <div class="work-card-tag">Video · Reels</div>
+      <div class="work-card-title">Art Direction</div>
+      <div class="work-card-desc">Replaced video shoots for select content — same quality, fraction of the budget. Directed 20+ models and too many videographers to count over the last 1.5 years, without losing hair.</div>
+    </div>
+    <div class="work-card reveal">
+      <div class="work-card-tag">Images · Campaigns</div>
+      <div class="work-card-title">Copywriting</div>
+      <div class="work-card-desc">I write (mostly short) copy that strengthens brand identity, informs the consumer, and makes the audience feel something.</div>
+    </div>
+    <div class="work-card reveal">
+      <div class="work-card-tag">End to End</div>
+      <div class="work-card-title">Influencer Marketing</div>
+      <div class="work-card-desc">From shortlisting suitable ones from the enormous pool to briefing them, to making sure they've reached the venue on time and delivered the right thing, I've got it all.</div>
+    </div>
+    <div class="work-card reveal">
+      <div class="work-card-tag">Paid Social</div>
+      <div class="work-card-title">Social Media Planning</div>
+      <div class="work-card-desc">Monthly planners, annual content planners, monthly campaign planners, (I hope the brand says yes to this idea) planners, you name it.</div>
+    </div>
+    <div class="work-card reveal">
+      <div class="work-card-tag">Design · Decks</div>
+      <div class="work-card-title">Campaign Execution</div>
+      <div class="work-card-desc">Ideation, grid planning, client decks, lookbooks, and product catalogues. A–Z shoot executions.</div>
+    </div>
+    <div class="work-card reveal">
+      <div class="work-card-tag">Reporting</div>
+      <div class="work-card-title">Analytics & Ads</div>
+      <div class="work-card-desc">Google Analytics, Meta Suite, and Excel for reporting and data-driven planning.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="eyebrow reveal">Let's Talk</div>
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="contact-headline">Got a brand that needs a <em>refresh button?</em></div>
+      <div class="contact-subtext">Open to remote Social Media Manager, Brand Strategist, and Content Strategy roles globally.</div>
+    </div>
+    <div class="contact-items reveal">
+      <div class="contact-item"><div class="contact-key">Email</div><div class="contact-val">khushigadi20@gmail.com</div></div>
+      <div class="contact-item"><div class="contact-key">Phone</div><div class="contact-val">+91 9076911171</div></div>
+      <div class="contact-item"><div class="contact-key">Location</div><div class="contact-val">Jaipur, India · Remote Ready</div></div>
+      <div class="contact-item"><div class="contact-key">Timezone</div><div class="contact-val">IST (UTC +5:30)</div></div>
+      <div class="contact-item"><div class="contact-key">Availability</div><div class="contact-val">Immediate · Full-time Remote</div></div>
+      <div class="contact-item"><div class="contact-key">LinkedIn</div><div class="contact-val dim">[ Add your LinkedIn URL here ]</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Khushi<span>.</span></div>
+  <div class="footer-copy">Social Media Executive & Brand Strategist · Open to Remote · 2026</div>
+</footer>
+
+<script>
+// Cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  cursor.style.left=mx+'px'; cursor.style.top=my+'px';
+});
+function animRing(){
+  rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('a,button,.reel-thumb,.skill-row,.metric,.work-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.classList.add('hover');ring.classList.add('hover');});
+  el.addEventListener('mouseleave',()=>{cursor.classList.remove('hover');ring.classList.remove('hover');});
+});
+
+// Progress bar
+window.addEventListener('scroll',()=>{
+  const s=document.documentElement;
+  const pct=(s.scrollTop/(s.scrollHeight-s.clientHeight))*100;
+  document.getElementById('progress').style.width=pct+'%';
+});
+
+// Scroll reveal
+const reveals=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'),i*55);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.08,rootMargin:'0px 0px -50px 0px'});
+reveals.forEach(el=>obs.observe(el));
+
+// Reel modal
+const modal=document.getElementById('modal');
+const modalFrame=document.getElementById('modalFrame');
+const modalClose=document.getElementById('modalClose');
+
+function openReel(url){
+  modalFrame.src=url;
+  modal.classList.add('active');
+  document.body.style.overflow='hidden';
+}
+modalClose.addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+function closeModal(){
+  modal.classList.remove('active');
+  modalFrame.src='';
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+</script>
+</body>
+</html>

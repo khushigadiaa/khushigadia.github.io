@@ -9,10 +9,10 @@
 :root {
   --black: #0A0A0A;
   --white: #FFFFFF;
-  --coral: #FF4D4D;
-  --coral-dim: rgba(255,77,77,0.12);
+  --coral: #E8873A;
+  --coral-dim: rgba(232,135,58,0.12);
   --gray: #777;
-  --mid: #1A1A1A;
+  --mid: #151515;
   --card: #111;
   --border: rgba(255,255,255,0.08);
 }
@@ -105,8 +105,8 @@ nav {
 
 .hero-title {
   font-family:'Playfair Display',serif;
-  font-size:clamp(52px,8.5vw,108px);
-  font-weight:900; line-height:0.93; letter-spacing:-0.03em;
+  font-size:clamp(48px,7.5vw,96px);
+  font-weight:900; line-height:0.96; letter-spacing:-0.03em;
   animation: fadeUp 0.9s ease 0.3s both;
 }
 .hero-title em { font-style:italic; color:var(--coral); }
@@ -189,27 +189,22 @@ section { padding:110px 52px; }
 .brand-section { border-top:1px solid var(--border); }
 
 .brand-layout {
-  display:grid; grid-template-columns:1fr 1fr; min-height:600px;
+  display:grid; grid-template-columns:1fr 1fr; min-height:600px; align-items:stretch;
 }
 .brand-layout.flip { direction:rtl; }
 .brand-layout.flip > * { direction:ltr; }
 
-.brand-media { position:relative; overflow:hidden; background:#0d0d0d; }
-.brand-img {
-  width:100%; height:100%; object-fit:cover;
-  transition:transform 0.8s ease;
-  display:block; min-height:500px;
-}
-.brand-layout:hover .brand-img { transform:scale(1.04); }
+.brand-media { position:relative; overflow:hidden; background:#0d0d0d; min-height:600px; }
 
 /* Reels grid inside brand */
 .reels-grid {
-  display:grid; grid-template-columns:1fr 1fr; height:100%; gap:2px;
+  display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr;
+  height:100%; min-height:600px; gap:2px;
 }
 .reel-thumb {
-  position:relative; overflow:hidden; cursor:pointer; background:#111;
+  position:relative; overflow:hidden; cursor:pointer; background:#111; min-height:295px;
 }
-.reel-thumb img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s; }
+.reel-thumb img { width:100%; height:100%; object-fit:cover; object-position:center center; display:block; transition:transform 0.5s; }
 .reel-thumb:hover img { transform:scale(1.06); }
 .reel-play {
   position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
@@ -398,9 +393,9 @@ footer {
     <div class="hero-avail"><div class="dot-green"></div> Available for remote work</div>
   </div>
   <h1 class="hero-title">
-    I help brands become<br>
-    <span class="indent">something people like</span><br>
-    <em>me</em> would want on their feed.
+    I help brands become something<br>
+    people like <em>me</em> would want<br>
+    on their feed.
   </h1>
   <div class="hero-bottom">
     <p class="hero-bio">
@@ -458,13 +453,13 @@ footer {
   <div class="about-grid">
     <div class="about-bio reveal">
       <p>I've managed <strong>5+ simultaneous brand accounts</strong> — B2B, Menswear, Babywear, F&B, Lifestyle and much more — producing 120+ posts a month without losing my mind or the brand voice.</p>
-      <p>A big part of how I do this is <em>AI</em>. Tools like Higgsfield and Nana meant I could direct the designers to produce shoot-quality content without booking a studio every week. Verosmart's entire visual identity? 100% AI-directed. You wouldn't know it.</p>
+      <p>A big part of how I do this is <em>AI</em>. I used AI tools to produce shoot-quality content without booking a studio every week. Verosmart's entire visual identity? 100% AI-directed. You wouldn't know it.</p>
       <p>I've also done the real thing — hired vendors, stood on set, directed photographers, and told editors exactly which frame makes the Bemberg fabric look like a dream. <strong>Both skillsets. One person. Hi.</strong></p>
       <div class="about-note">On the next couple of sections, you'll see samples of work I'm proud of :)</div>
     </div>
     <div class="skills-list reveal stagger">
       <div class="skill-row"><div class="skill-name">Multi-Brand Management</div><div class="skill-detail">5+ brands at once, zero identity blur</div></div>
-      <div class="skill-row"><div class="skill-name">AI Content Production</div><div class="skill-detail">Higgsfield · Nana · ChatGPT · Claude</div></div>
+      <div class="skill-row"><div class="skill-name">AI Content Production</div><div class="skill-detail">ChatGPT · Claude · Canva AI</div></div>
       <div class="skill-row"><div class="skill-name">Art Direction</div><div class="skill-detail">Concept → Shoot → Post-production</div></div>
       <div class="skill-row"><div class="skill-name">Paid Social</div><div class="skill-detail">Meta Ads · LinkedIn Boosting</div></div>
       <div class="skill-row"><div class="skill-name">Brand Storytelling</div><div class="skill-detail">Voice, Copywriting, Grid, Campaign</div></div>
@@ -487,18 +482,18 @@ footer {
       <div class="brand-media">
         <div class="reels-grid">
           <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DPd8SySD3bz/embed/')">
-            <img src="IMG_5840.png" alt="Bemberg Festive" style="object-position:center top">
+            <img src="IMG_5953.png" alt="Bemberg - Orange Crop Top">
             <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
           </div>
           <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DPWOB0aE5lc/embed/')">
-            <img src="IMG_5840.png" alt="Bemberg" style="object-position:30% 60%">
+            <img src="IMG_5954.png" alt="Bemberg - Black Floral">
             <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
           </div>
           <div class="reel-thumb" style="cursor:default">
-            <img src="IMG_5840.png" alt="Bemberg" style="object-position:60% 30%">
+            <img src="IMG_5952.png" alt="Bemberg - Black Kurta">
           </div>
           <div class="reel-thumb" style="cursor:default">
-            <img src="IMG_5840.png" alt="Bemberg" style="object-position:80% 80%">
+            <img src="IMG_5950.png" alt="Bemberg - Blue Kaftan">
           </div>
         </div>
       </div>
@@ -523,18 +518,18 @@ footer {
       <div class="brand-media">
         <div class="reels-grid">
           <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DVm8KDoE4rd/embed/')">
-            <img src="IMG_5844.png" alt="Carter's India" style="object-position:center top">
+            <img src="IMG_5967.png" alt="Carter's - Soccer Shorts">
             <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
           </div>
           <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DUk9WU3DAbA/embed/')">
-            <img src="IMG_5844.png" alt="Carter's" style="object-position:80% 20%">
+            <img src="IMG_5966.png" alt="Carter's - Soft Girl Spring">
             <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
           </div>
           <div class="reel-thumb" style="cursor:default">
-            <img src="IMG_5844.png" alt="Carter's" style="object-position:20% 60%">
+            <img src="IMG_5964.png" alt="Carter's - PurelySoft">
           </div>
           <div class="reel-thumb" style="cursor:default">
-            <img src="IMG_5844.png" alt="Carter's" style="object-position:60% 40%">
+            <img src="IMG_5965.png" alt="Carter's - Heart Stealer">
           </div>
         </div>
       </div>
@@ -559,18 +554,18 @@ footer {
       <div class="brand-media">
         <div class="reels-grid">
           <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DWjIUMtEnn9/embed/')">
-            <img src="IMG_5843.png" alt="Verosmart" style="object-position:center top">
+            <img src="IMG_5959.png" alt="Verosmart - Linen Shirt">
             <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
           </div>
           <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DVJVpL-kk78/embed/')">
-            <img src="IMG_5843.png" alt="Verosmart" style="object-position:40% 30%">
+            <img src="IMG_5956.png" alt="Verosmart - Black Polo">
             <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
           </div>
           <div class="reel-thumb" style="cursor:default">
-            <img src="IMG_5843.png" alt="Verosmart" style="object-position:60% 70%">
+            <img src="IMG_5957.png" alt="Verosmart - Tailor">
           </div>
           <div class="reel-thumb" style="cursor:default">
-            <img src="IMG_5843.png" alt="Verosmart" style="object-position:20% 50%">
+            <img src="IMG_5955.png" alt="Verosmart - Street">
           </div>
         </div>
       </div>
@@ -578,7 +573,7 @@ footer {
         <div class="ai-badge">100% AI Content</div>
         <div class="brand-tag">Menswear · AI-First Brand Build</div>
         <div class="brand-name">Verosmart</div>
-        <div class="brand-desc">Every image on this feed? AI-directed. No studio. No model booking. No location scouting. Just a clear vision — <strong>"Intelligent apparel for modern India"</strong> — and designers briefed to bring it to life. It looks like luxury. It cost peanuts.</div>
+        <div class="brand-desc">Every image on this feed? AI-generated. No studio. No model booking. No location scouting. Just a clear vision — <strong>"Intelligent apparel for modern India"</strong> — brought to life through AI. It looks like luxury. It cost peanuts.</div>
         <div class="metrics-grid stagger">
           <div class="metric"><div class="metric-val">2.8<em>M</em></div><div class="metric-key">Views +597%</div></div>
           <div class="metric"><div class="metric-val">+844<em>%</em></div><div class="metric-key">Follower growth</div></div>
@@ -596,30 +591,30 @@ footer {
       <div class="brand-media">
         <div class="reels-grid">
           <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DWWQbSyEg4M/embed/')">
-            <img src="IMG_5842.png" alt="Crocodile" style="object-position:center top">
+            <img src="IMG_5963.png" alt="Crocodile - Red Tee">
             <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
           </div>
           <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DU8Ib3CGE6q/embed/')">
-            <img src="IMG_5842.png" alt="Crocodile" style="object-position:30% 50%">
+            <img src="IMG_5962.png" alt="Crocodile - Athleisure">
             <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
           </div>
           <div class="reel-thumb" style="cursor:default">
-            <img src="IMG_5842.png" alt="Crocodile" style="object-position:70% 20%">
+            <img src="IMG_5961.png" alt="Crocodile - Sea Shot">
           </div>
           <div class="reel-thumb" style="cursor:default">
-            <img src="IMG_5842.png" alt="Crocodile" style="object-position:50% 80%">
+            <img src="IMG_5960.jpeg" alt="Crocodile - Studio Series">
           </div>
         </div>
       </div>
       <div class="brand-info reveal">
         <div class="brand-tag">Fashion · Brand Identity from Scratch</div>
         <div class="brand-name">Crocodile</div>
-        <div class="brand-desc">Crocodile had content. It just didn't have a point of view. When I came in, menswear on Instagram was a sea of sameness — everyone doing the same clean white backgrounds, the same generic lifestyle shots. So we went the other way. We made <strong>Crocodile the hero</strong> — not the clothes. The name, the legacy, the attitude. Editorial shifts, stronger typography, a visual language that felt like it had something to say. And then we took it further — moved away from shoots entirely and directed designers to build an AI content pipeline that honestly looks better than what we were producing on set. Less budget. More brand.</div>
+        <div class="brand-desc">Crocodile had content. It just didn't have a point of view. When I came in, menswear on Instagram was a sea of sameness — everyone doing the same clean white backgrounds, the same generic lifestyle shots. So we went the other way. We made <strong>Crocodile the hero</strong> — not the clothes. The name, the legacy, the attitude. Editorial shifts, stronger typography, a visual language that felt like it had something to say. And then we took it further — moved away from shoots and shifted to AI-generated content that honestly looks better than what we were producing on set. Less budget. More brand.</div>
         <div class="metrics-grid stagger">
           <div class="metric"><div class="metric-val">99<em>M</em></div><div class="metric-key">Views total</div></div>
           <div class="metric"><div class="metric-val">36<em>M</em></div><div class="metric-key">Reach</div></div>
           <div class="metric"><div class="metric-val">148<em>K</em></div><div class="metric-key">Interactions</div></div>
-          <div class="metric"><div class="metric-val">73</div><div class="metric-key">Posts published</div></div>
+          <div class="metric"><div class="metric-val">Multi<em>-cat</em></div><div class="metric-key">Campaign coverage</div></div>
         </div>
         <div class="brand-role"><strong>My role:</strong> Brand strategy · Creative direction · AI workflow briefing · Copywriting · Multi-category campaigns · Grid direction</div>
       </div>
@@ -632,19 +627,19 @@ footer {
       <div class="brand-media">
         <div class="reels-grid">
           <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DWEOxg1Chfw/embed/')">
-            <img src="IMG_5841.png" alt="Forum Rex Walk" style="object-position:center top">
+            <img src="IMG_5969.png" alt="Rex Walk - Cocktail">
             <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
           </div>
           <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DUBBHN0DkZW/embed/')">
-            <img src="IMG_5841.png" alt="Rex Walk" style="object-position:30% 40%">
+            <img src="IMG_5968.png" alt="Rex Walk - Till Death">
             <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
           </div>
           <div class="reel-thumb" onclick="openReel('https://www.instagram.com/p/DSbyycwTwfT/embed/')">
-            <img src="IMG_5841.png" alt="Rex Walk" style="object-position:70% 60%">
+            <img src="IMG_5970.png" alt="Rex Walk - Passport">
             <div class="reel-play"><div class="reel-play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div>
           </div>
           <div class="reel-thumb" style="cursor:default">
-            <img src="IMG_5841.png" alt="Rex Walk" style="object-position:50% 20%">
+            <img src="IMG_5841.png" alt="Rex Walk Grid" style="object-position:center 30%">
           </div>
         </div>
       </div>
@@ -666,12 +661,11 @@ footer {
 
 <!-- HANNAH MONTANA -->
 <section class="hannah">
-  <div class="eyebrow reveal">Bonus Round</div>
-  <h2 class="section-title reveal" style="color:var(--black);">I pull a little Hannah Montana sometimes.<br><em style="color:var(--coral)">Directing the scene and starring in it too.</em></h2>
+  <h2 class="section-title reveal" style="color:var(--black);">I pull a little Hannah Montana sometimes.</h2>
+  <p class="reveal" style="color:var(--coral); font-size:16px; margin-top:10px; font-weight:500;">Directing the scene and starring in it too.</p>
   <div class="hannah-grid">
     <div class="hannah-text reveal">
-      <p>I pull a little Hannah Montana sometimes.</p>
-      <p><strong>Directing the scene and starring in it too.</strong></p>
+      <p>Modelled for a Valentine's shoot I was already directing. Concept, casting, shot list — and then also the face in the frame.</p>
     </div>
     <div class="hannah-reel reveal">
       <div class="hannah-reel-wrap">
@@ -734,7 +728,6 @@ footer {
       <div class="contact-item"><div class="contact-key">Location</div><div class="contact-val">Jaipur, India · Remote Ready</div></div>
       <div class="contact-item"><div class="contact-key">Timezone</div><div class="contact-val">IST (UTC +5:30)</div></div>
       <div class="contact-item"><div class="contact-key">Availability</div><div class="contact-val">Immediate · Full-time Remote</div></div>
-      <div class="contact-item"><div class="contact-key">LinkedIn</div><div class="contact-val dim">[ Add your LinkedIn URL here ]</div></div>
     </div>
   </div>
 </section>
